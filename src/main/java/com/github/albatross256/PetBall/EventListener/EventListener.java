@@ -287,10 +287,10 @@ public class EventListener implements Listener{
 		// 1.20.5以降のタグ保存用のデータ
 		ItemStack equipedHorseArmor = null;
 				if(tag.hasTag(BallData.ENTITYBALL_ISC_KEY)){
-					 Map tags = tag.get(BallData.ENTITYBALL_ISC_KEY);
-					 tags.forEach((k, v) -> {
-					 entityTag.set(v, k);
-					 });
+					 Map<String, Object> tags = tag.get(BallData.ENTITYBALL_ISC_KEY);
+                     tags.forEach((k, v) -> {
+                       entityTag.set(v, k);
+                     });
 				} else {
 					// 1.20.4以前のNBTデータから馬鎧を取り出す
 					var nbtTag = itemTag.get().get(BallData.ENTITYBALL_NBT_KEY);
@@ -311,7 +311,22 @@ public class EventListener implements Listener{
 								this.logger.trace("[TRACE] isArmorItems ? " + isArmorItems);
 
 								if (isArmorItems) {
-									List<Map<String, Object>> armorItemList = (List<Map<String, Object>>) v;
+                                  List<Map<String, Object>> armorItemList = new ArrayList<>();
+                                  // (List<Map<String, Object>>) v;
+                                  if (v instanceof List armorList) {
+                                    for (Object armorObj : armorList) {
+                                      if (armorObj instanceof Map armorItemMap) {
+                                        Map<String, Object> armorMap = new HashMap<>();
+                                        for (Object keyObj : armorItemMap.keySet()) {
+
+                                          if (keyObj instanceof String key) {
+                                            armorMap.put(key, armorItemMap.get(keyObj));
+                                          }
+                                        }
+                                        armorItemList.add(armorMap);
+                                      }
+                                    }
+                                  }
 									boolean isNotEmptyArmorItemList = !armorItemList.isEmpty();
 									this.logger.trace("[TRACE] boolean isNotEmptyArmorItemList <- !armorItemList.isEmpty()");
 									this.logger.trace("[TRACE] isNotEmptyArmorItemList ? " + isNotEmptyArmorItemList);
