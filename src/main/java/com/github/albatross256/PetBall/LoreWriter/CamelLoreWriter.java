@@ -2,6 +2,7 @@ package com.github.albatross256.PetBall.LoreWriter;
 
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Allay;
+import org.bukkit.entity.Axolotl;
 import org.bukkit.entity.Camel;
 import org.bukkit.entity.Entity;
 
@@ -10,11 +11,26 @@ import java.util.List;
 
 public class CamelLoreWriter extends LoreWriter {
 
-	@Override
-	public List<String> generateLore(Entity entity) {
-		List<String> lore = new ArrayList<String>();
-		lore.add("ラクダ");
-		lore.add(getHealthMeter(((Camel)entity).getHealth(), ((Camel)entity).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
-		return lore;
-	}
+  /**
+   * Loreに表示するMobの日本語名
+   */
+  private static String loreMobName = "ラクダ";
+
+  /**
+   * コンストラクタ
+   */
+  public CamelLoreWriter() {
+    super(loreMobName);
+  }
+
+  /**
+   * Lore情報の作成
+   *
+   * @param entity Loreを作成するエンティティ情報
+   */
+  @Override
+  public List<String> generateLore(Entity entity) {
+    List<String> lore = generateCommonLore(entity);
+    return lore;
+  }
 }
