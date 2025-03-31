@@ -1,19 +1,31 @@
-package com.github.albatross256.PetBall.LoreWriter;
+package com.github.albatross256.petball.lorewriter;
 
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.GlowSquid;
-import org.bukkit.attribute.Attribute;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GlowSquidLoreWriter extends LoreWriter {
 
-	@Override
-	public List<String> generateLore(Entity entity) {
-		List<String> lore = new ArrayList<String>();
-		lore.add("ヒカリイカ");
-		lore.add(getHealthMeter(((GlowSquid)entity).getHealth(), ((GlowSquid)entity).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
-		return lore;
-	}
+  /**
+   * Loreに表示するMobの日本語名
+   */
+  private static String loreMobName = "ヒカリイカ";
+
+  /**
+   * コンストラクタ
+   */
+  public GlowSquidLoreWriter() {
+    super(loreMobName);
+  }
+
+  /**
+   * Lore情報の作成
+   *
+   * @param entity Loreを作成するエンティティ情報
+   */
+  @Override
+  public List<String> generateLore(Entity entity) {
+    List<String> lore = generateCommonLore(entity);
+    return lore;
+  }
 }

@@ -1,22 +1,49 @@
-package com.github.albatross256.PetBall.BallData;
+package com.github.albatross256.petball.balldata;
 
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 
-public class DonkeyBallData extends BallData{
+/**
+ * <p>
+ * PetBall の {@link com.github.albatross256.petball.balldata.BallData} .<br>
+ * {@link org.bukkit.entity.Donkey} を捕獲するボールを構築する実装クラス.
+ * </p>
+ * */
+public class DonkeyBallData extends BallData {
 
-	@Override
-	public EntityType getEntityType() {
-		return EntityType.DONKEY;
-	}
+  /**
+   * <p>
+   * このボールで召喚可能なエンティティタイプ.
+   * </p>
+   *
+   * @return {@link org.bukkit.entity.EntityType}
+   * */
+  @Override
+  public EntityType getEntityType() {
+    return EntityType.DONKEY;
+  }
 
-	@Override
-	public Material getFilledBallMaterial() {
-		return Material.DONKEY_SPAWN_EGG;
-	}
+  /**
+   * <p>
+   * ボールデータに利用されるスポーンエッグ表示.
+   * </p>
+   *
+   * @return {@link org.bukkit.Material}
+   * */
+  @Override
+  public Material getFilledBallMaterial() {
+    return Material.DONKEY_SPAWN_EGG;
+  }
 
-	@Override
-	public EntityType getFilledBallEntityType() {
-		return EntityType.DONKEY;
-	}
+  /**
+   * </p>
+   * このボールに格納可能なエンティティタイプ.
+   * </p>
+   *
+   * @return {@link org.bukkit.entity.EntityType}
+   * */
+  @Override
+  public EntityType getFilledBallEntityType() {
+    return EntityType.DONKEY;
+  }
 }

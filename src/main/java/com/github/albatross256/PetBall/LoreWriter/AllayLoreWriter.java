@@ -1,19 +1,48 @@
-package com.github.albatross256.PetBall.LoreWriter;
+package com.github.albatross256.petball.lorewriter;
 
-import org.bukkit.attribute.Attribute;
-import org.bukkit.entity.Allay;
+import java.util.List;
 import org.bukkit.entity.Entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * <p>
+ * {@link org.bukkit.entity.Allay} が入ってるPetBall の ItemStack {@link org.bukkit.inventory.ItemStack} の<br>
+ * Lore へ書き込む文字列を構築する機能の実装クラス.
+ * </p>
+ */
 public class AllayLoreWriter extends LoreWriter {
 
-	@Override
-	public List<String> generateLore(Entity entity) {
-		List<String> lore = new ArrayList<String>();
-		lore.add("アレイ");
-		lore.add(getHealthMeter(((Allay)entity).getHealth(), ((Allay)entity).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
-		return lore;
-	}
+  /**
+   * <p>
+   * Loreに表示するMOBの日本語名.<br>
+   * {@link String}
+   * </p>
+   */
+  private static final String loreMobName = "アレイ";
+
+  /**
+   * <p>
+   * コンストラクタ.<br>
+   * 必ずsuperクラスに{@value loreMobName}を渡す.<br>
+   * それ以外の固有の初期化処理をここで実施.
+   * </p>
+   *
+   */
+  public AllayLoreWriter() {
+    super(loreMobName);
+  }
+
+  /**
+   * <p>
+   * Lore情報の作成.<br>
+   * 親クラスの{@link com.github.albatross256.petball.lorewriter.LoreWriter#generateCommonLore}で<br>
+   * 共通の情報を先に生成後固有のLore情報追加を実施する.
+   * </p>
+   *
+   * @param entity         {@link Entity} 生成対象のエンティティ情報.
+   * @return {@link List} 作成したエンティティに関するLore情報.
+   */
+  @Override
+  public List<String> generateLore(Entity entity) {
+    return generateCommonLore(entity);
+  }
 }

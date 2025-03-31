@@ -1,22 +1,49 @@
-package com.github.albatross256.PetBall.BallData;
+package com.github.albatross256.petball.balldata;
 
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 
-public class ParrotBallData extends BallData{
+/**
+ * <p>
+ * PetBall の {@link com.github.albatross256.petball.balldata.BallData} .<br>
+ * {@link org.bukkit.entity.Parrot} を捕獲するボールを構築する実装クラス.
+ * </p>
+ * */
+public class ParrotBallData extends BallData {
 
-	@Override
-	public EntityType getEntityType() {
-		return EntityType.PARROT;
-	}
+  /**
+   * <p>
+   * このボールで召喚可能なエンティティタイプ.
+   * </p>
+   *
+   * @return {@link org.bukkit.entity.EntityType}
+   * */
+  @Override
+  public EntityType getEntityType() {
+    return EntityType.PARROT;
+  }
 
-	@Override
-	public Material getFilledBallMaterial() {
-		return Material.PARROT_SPAWN_EGG;
-	}
+  /**
+   * <p>
+   * ボールデータに利用されるスポーンエッグ表示.
+   * </p>
+   *
+   * @return {@link org.bukkit.Material}
+   * */
+  @Override
+  public Material getFilledBallMaterial() {
+    return Material.PARROT_SPAWN_EGG;
+  }
 
-	@Override
-	public EntityType getFilledBallEntityType() {
-		return EntityType.PARROT;
-	}
+  /**
+   * </p>
+   * このボールに格納可能なエンティティタイプ.
+   * </p>
+   *
+   * @return {@link org.bukkit.entity.EntityType}
+   * */
+  @Override
+  public EntityType getFilledBallEntityType() {
+    return EntityType.PARROT;
+  }
 }

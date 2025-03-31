@@ -1,22 +1,31 @@
-package com.github.albatross256.PetBall.LoreWriter;
+package com.github.albatross256.petball.lorewriter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.ZombieHorse;
 
 public class ZombieHorseLoreWriter extends LoreWriter {
 
-	@Override
-	public List<String> generateLore(Entity entity) {
-		List<String> lore = new ArrayList<String>();
-		ZombieHorse zombieHorse = (ZombieHorse)entity;
-		//String owner = zombieHorse.getOwner() == null ? "なし" : zombieHorse.getOwner().getName();
-		lore.add("ゾンビ馬");
-		lore.add(getHealthMeter(zombieHorse.getHealth(), zombieHorse.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
-		//lore.add("飼い主: " + owner);
-		return lore;
-	}
+  /**
+   * Loreに表示するMobの日本語名
+   */
+  private static String loreMobName = "ゾンビ馬";
+
+  /**
+   * コンストラクタ
+   */
+  public ZombieHorseLoreWriter() {
+    super(loreMobName);
+  }
+
+  /**
+   * Lore情報の作成
+   *
+   * @param entity Loreを作成するエンティティ情報
+   */
+  @Override
+  public List<String> generateLore(Entity entity) {
+    List<String> lore = generateCommonLore(entity);
+    return lore;
+  }
 }

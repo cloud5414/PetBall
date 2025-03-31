@@ -4,7 +4,7 @@
 
   <groupId>com.github.albatross256</groupId>
   <artifactId>PetBall</artifactId>
-  <version>4.8.0</version>
+  <version>5.2.2</version>
   <build>
     <plugins>
       <plugin>
@@ -24,6 +24,43 @@
           <encoding>UTF-8</encoding>
           <propertiesEncoding>UTF-8</propertiesEncoding>
         </configuration>
+        <executions>
+          <execution>
+            <id>copy-files-on-build</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <!-- プロジェクト直下にproject.propertiesを置いて、RESOURCE-PATH=パス　で出力先のプラグインフォルダーを指定 -->              <outputDirectory>${RESOURCE-PATH}</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${basedir}/target</directory>
+                  <include>${project.artifactId}-${project.version}.jar</include>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+        <version>1.1.0</version>
+        <executions>
+          <execution>
+            <phase>initialize</phase>
+            <goals>
+              <goal>read-project-properties</goal>
+            </goals>
+            <configuration>
+              <files>
+                <file>project.properties</file>
+              </files>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>net.md-5</groupId>
@@ -72,8 +109,9 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <rtag-version>1.5.8</rtag-version>
   </properties>
   <repositories>
     <repository>
@@ -82,6 +120,24 @@
     </repository>
   </repositories>
   <dependencies>
+    <dependency>
+      <groupId>com.saicone.rtag</groupId>
+      <artifactId>rtag</artifactId>
+      <version>${rtag-version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.saicone.rtag</groupId>
+      <artifactId>rtag-item</artifactId>
+      <version>${rtag-version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.saicone.rtag</groupId>
+      <artifactId>rtag-entity</artifactId>
+      <version>${rtag-version}</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>

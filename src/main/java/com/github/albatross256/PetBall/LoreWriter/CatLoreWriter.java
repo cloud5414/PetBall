@@ -1,22 +1,31 @@
-package com.github.albatross256.PetBall.LoreWriter;
+package com.github.albatross256.petball.lorewriter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.attribute.Attribute;
-import org.bukkit.entity.Cat;
 import org.bukkit.entity.Entity;
 
 public class CatLoreWriter extends LoreWriter {
 
-	@Override
-	public List<String> generateLore(Entity entity) {
-		List<String> lore = new ArrayList<String>();
+  /**
+   * Loreに表示するMobの日本語名
+   */
+  private static String loreMobName = "ネコ";
 
-		String owner = ((Cat)entity).getOwner() == null ? "なし" : ((Cat)entity).getOwner().getName();
-		lore.add("猫");
-		lore.add(getHealthMeter(((Cat)entity).getHealth(), ((Cat)entity).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
-		lore.add("飼い主: " + owner);
-		return lore;
-	}
+  /**
+   * コンストラクタ
+   */
+  public CatLoreWriter() {
+    super(loreMobName);
+  }
+
+  /**
+   * Lore情報の作成
+   *
+   * @param entity Loreを作成するエンティティ情報
+   */
+  @Override
+  public List<String> generateLore(Entity entity) {
+    List<String> lore = generateCommonLore(entity);
+    return lore;
+  }
 }

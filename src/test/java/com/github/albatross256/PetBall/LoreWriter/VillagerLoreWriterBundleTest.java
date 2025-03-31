@@ -1,4 +1,4 @@
-package com.github.albatross256.PetBall.LoreWriter;
+package com.github.albatross256.petball.lorewriter;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 
 public class VillagerLoreWriterBundleTest {
 
-  private static String BASE_NAME = "com.github.albatross256.PetBall.LoreWriter.VillagerLoreWriter";
+  private static String BASE_NAME = "com.github.albatross256.petball.lorewriter.VillagerLoreWriter";
   private ResourceBundle bundle = ResourceBundle.getBundle(BASE_NAME, Locale.JAPANESE);
 
   @Test
   void noneTest() {
-    assertEquals(bundle.getString(Villager.Profession.NONE.name()), "None");
+    assertEquals(bundle.getString(Villager.Profession.NONE.name()), "ニート");
   }
 
   @Test
@@ -72,7 +72,7 @@ public class VillagerLoreWriterBundleTest {
 
   @Test
   void nitwitTest() {
-    assertEquals(bundle.getString(Villager.Profession.NITWIT.name()), "無職");
+    assertEquals(bundle.getString(Villager.Profession.NITWIT.name()), "ニート");
   }
 
   @Test
